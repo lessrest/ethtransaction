@@ -36,7 +36,6 @@ Usage:
   ethtransaction bin [options] <calldata>
 
 Options:
-  --from=<account>        Transaction sender
   --to=<account>          Transaction recipient (omit for contract creation)
   --nonce=<nonce>         Nonce of sender
   --value=<value>         Value to send [default: 0]
@@ -47,7 +46,6 @@ Options:
 
 #[derive(Debug, RustcDecodable)]
 struct Args {
-  flag_from: String,
   flag_to: Option<String>,
   flag_nonce: String,
   flag_value: Option<String>,
