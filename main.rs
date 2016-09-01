@@ -32,15 +32,15 @@ Generate an Ethereum transaction
 
 Usage:
   ethtransaction -h
-  ethtransaction hex [options] <calldata>
-  ethtransaction bin [options] <calldata>
+  ethtransaction [options] <calldata>
 
 Options:
-  --to=<account>          Transaction recipient (omit for contract creation)
-  --nonce=<nonce>         Nonce of sender
-  --value=<value>         Value to send [default: 0]
-  --gas=<gas>             Gas
-  --gasprice=<limit>      Gas price
+  --to=<account>          (Address) Recipient (omit for contract creation)
+  --nonce=<nonce>         (Decimal) nonce of sender
+  --value=<value>         (Decimal) value to send [default: 0]
+  --gas=<gas>             (Decimal) gas
+  --gasprice=<limit>      (Decimal) gas price
+  --binary                Write binary output
   -h --help               Show this screen
 "#;
 
@@ -52,8 +52,7 @@ struct Args {
   flag_gas: String,
   flag_gasprice: String,
   arg_calldata: String,
-  cmd_hex: bool,
-  cmd_bin: bool,
+  flag_binary: bool,
 }
 
 impl Args {
@@ -109,10 +108,10 @@ fn main() {
 
   match run(&args) {
     Ok(vec) => {
-      if args.cmd_hex {
-        println!("{}", vec.to_hex());
-      } else {
+      if args.flag_binary {
         std::io::stdout().write(&vec).expect("write failed");
+      } else {
+        println!("{}", vec.to_hex());
       }
     },
     Err(e) => {
