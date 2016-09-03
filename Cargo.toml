@@ -7,7 +7,7 @@ authors = ["Mikael Brockman <mikael@brockman.se>"]
 
 [dependencies]
 rustc-serialize = "0.3"
-docopt = "0.6"
+docopt = "0.6.82"
 ethcore = { git = "https://github.com/ethcore/parity" }
 ethcore-util = { git = "https://github.com/ethcore/parity" }
 
